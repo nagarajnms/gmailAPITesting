@@ -243,12 +243,39 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
 }
 </script>
     <h1>pytest_report.html</h1>
-    <p>Report generated on 05-Oct-2022 at 20:26:17 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <p>Report generated on 06-Oct-2022 at 08:50:29 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
+        <td>BUILD_ID</td>
+        <td>13</td></tr>
+      <tr>
+        <td>BUILD_NUMBER</td>
+        <td>13</td></tr>
+      <tr>
+        <td>BUILD_TAG</td>
+        <td>jenkins-gmail_api_test-13</td></tr>
+      <tr>
+        <td>BUILD_URL</td>
+        <td><a href="http://localhost:8080/job/gmail_api_test/13/" target="_blank">http://localhost:8080/job/gmail_api_test/13/</a></td></tr>
+      <tr>
+        <td>CI</td>
+        <td>true</td></tr>
+      <tr>
+        <td>EXECUTOR_NUMBER</td>
+        <td>0</td></tr>
+      <tr>
         <td>JAVA_HOME</td>
-        <td>C:\Program Files\Java\jdk-11.0.1\bin</td></tr>
+        <td>C:\Program Files\Java\jdk-17.0.4.1</td></tr>
+      <tr>
+        <td>JENKINS_URL</td>
+        <td><a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a></td></tr>
+      <tr>
+        <td>JOB_NAME</td>
+        <td>gmail_api_test</td></tr>
+      <tr>
+        <td>NODE_NAME</td>
+        <td>built-in</td></tr>
       <tr>
         <td>Packages</td>
         <td>{"pluggy": "1.0.0", "py": "1.11.0", "pytest": "7.1.3"}</td></tr>
@@ -260,9 +287,12 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <td>{"html": "3.1.1", "metadata": "2.0.2"}</td></tr>
       <tr>
         <td>Python</td>
-        <td>3.9.1</td></tr></table>
+        <td>3.9.1</td></tr>
+      <tr>
+        <td>WORKSPACE</td>
+        <td>C:\Users\nagar\.jenkins\workspace\gmail_api_test</td></tr></table>
     <h2>Summary</h2>
-    <p>5 tests ran in 3.12 seconds. </p>
+    <p>5 tests ran in 3.35 seconds. </p>
     <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">5 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
@@ -278,12 +308,12 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_gmail_rest_api.py::test_get_labels</td>
-          <td class="col-duration">0.35</td>
+          <td class="col-duration">0.29</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> -----------------------------Captured stdout setup------------------------------ <br/>&lt;google.oauth2.credentials.Credentials object at 0x0000019CE07F5970&gt;
-<br/> ------------------------------Captured stdout call------------------------------ <br/>Labels:
+            <div class="log"> -----------------------------Captured stdout setup------------------------------ <br/>&lt;google.oauth2.credentials.Credentials object at 0x000001EE60984640&gt;
+<br/> ------------------------------Captured stdout call------------------------------ <br/>Labels fetched in GET response:
 CHAT
 SENT
 INBOX
@@ -304,42 +334,43 @@ APITestLabel
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_gmail_rest_api.py::test_post_msg</td>
-          <td class="col-duration">0.51</td>
+          <td class="col-duration">0.47</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Details of the message posted: {&#x27;id&#x27;: &#x27;183a965f283ab925&#x27;, &#x27;threadId&#x27;: &#x27;183a965f283ab925&#x27;, &#x27;labelIds&#x27;: [&#x27;UNREAD&#x27;, &#x27;SENT&#x27;, &#x27;INBOX&#x27;]}
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Message details from the Response: {&#x27;id&#x27;: &#x27;183ac0f4a44a4dbe&#x27;, &#x27;threadId&#x27;: &#x27;183ac0f4a44a4dbe&#x27;, &#x27;labelIds&#x27;: [&#x27;UNREAD&#x27;, &#x27;SENT&#x27;, &#x27;INBOX&#x27;]}
 <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_gmail_rest_api.py::test_get_message_positive</td>
-          <td class="col-duration">0.35</td>
+          <td class="col-duration">0.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Results messages {&#x27;messages&#x27;: [{&#x27;id&#x27;: &#x27;183a965f283ab925&#x27;, &#x27;threadId&#x27;: &#x27;183a965f283ab925&#x27;}], &#x27;resultSizeEstimate&#x27;: 1}
-1
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2
+Results messages {&#x27;messages&#x27;: [{&#x27;id&#x27;: &#x27;183ac0f4a44a4dbe&#x27;, &#x27;threadId&#x27;: &#x27;183ac0f4a44a4dbe&#x27;}, {&#x27;id&#x27;: &#x27;183ac0de738ced16&#x27;, &#x27;threadId&#x27;: &#x27;183ac0de738ced16&#x27;}], &#x27;resultSizeEstimate&#x27;: 2}
 <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_gmail_rest_api.py::test_get_message_negative</td>
-          <td class="col-duration">0.35</td>
+          <td class="col-duration">0.54</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Results messages {&#x27;messages&#x27;: [{&#x27;id&#x27;: &#x27;183a965f283ab925&#x27;, &#x27;threadId&#x27;: &#x27;183a965f283ab925&#x27;}], &#x27;resultSizeEstimate&#x27;: 1}
-1
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>2
+Results messages {&#x27;messages&#x27;: [{&#x27;id&#x27;: &#x27;183ac0f4a44a4dbe&#x27;, &#x27;threadId&#x27;: &#x27;183ac0f4a44a4dbe&#x27;}, {&#x27;id&#x27;: &#x27;183ac0de738ced16&#x27;, &#x27;threadId&#x27;: &#x27;183ac0de738ced16&#x27;}], &#x27;resultSizeEstimate&#x27;: 2}
 <br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">test_gmail_rest_api.py::test_delete_message</td>
-          <td class="col-duration">0.71</td>
+          <td class="col-duration">1.11</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
-            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>1
-last test case second: {&#x27;resultSizeEstimate&#x27;: 0}
+            <div class="log"> ------------------------------Captured stdout call------------------------------ <br/>Message(s) details pre deletion: {&#x27;messages&#x27;: [{&#x27;id&#x27;: &#x27;183ac0f4a44a4dbe&#x27;, &#x27;threadId&#x27;: &#x27;183ac0f4a44a4dbe&#x27;}, {&#x27;id&#x27;: &#x27;183ac0de738ced16&#x27;, &#x27;threadId&#x27;: &#x27;183ac0de738ced16&#x27;}], &#x27;resultSizeEstimate&#x27;: 2}
+2
+Message(s) details post deletion: {&#x27;resultSizeEstimate&#x27;: 0}
 <br/></div></td></tr></tbody></table></body></html>

@@ -37,12 +37,15 @@ def setup():
 
 def test_get_labels(setup):
     """
-    Test the gmail GET API
+    Test the gmail GET Request
     underlying GET API call: url = GET "https://gmail.googleapis.com/gmail/v1/users/{user_id}/labels"
-    :param setup: fixture returns the API binding object to gmail service
+
+    The test validates if a pre-added Label is present in the response to the GET request on labels.
+
+    param setup: fixture returns the API binding object to gmail service
     """
     service = setup
-    label_name = "APITestLabel"
+    label_name = "APITestLabel"  # Pre-added label
     found = False
     # Call the Gmail API
     results = service.users().labels().list(userId='me').execute()
@@ -51,7 +54,7 @@ def test_get_labels(setup):
     if not labels:
         print('No labels found.')
         assert False, "No labels found"
-    print('Labels:')
+    print('Labels fetched in GET response:')
     for label in labels:
         print(label['name'])
         if label_name in label['name']:
@@ -62,13 +65,14 @@ def test_get_labels(setup):
 
 def test_post_msg(setup):
     """
-    Test the gmail POST API
+    Test the gmail POST Request
     underlying POST API call: url = "POST https://gmail.googleapis.com/upload/gmail/v1/users/{userId}/messages/send"
-    :param setup: fixture returns the API binding object to gmail service
+
+    The test sends an email via POST method call and validates a valid message_id was returned in response.
+
+    param setup: fixture returns the API binding object to gmail service
     """
     service = setup
-    label_name = "APITestLabels"
-    found = False
     email_msg = "This is a test email"
     mime_message = MIMEMultipart()
     mime_message['to'] = "nagaraj.quantify@gmail.com"
@@ -76,20 +80,22 @@ def test_post_msg(setup):
     mime_message.attach(MIMEText(email_msg, 'plain'))
     raw_string = base64.urlsafe_b64encode(mime_message.as_bytes()).decode()
     message = service.users().messages().send(userId='me', body={'raw': raw_string}).execute()
-    print(f"Details of the message posted: {message}")
-    assert message['id'], "Message send unsuccessful"
+    print(f"Message details from the Response: {message}")
+    assert message.get('id', ""), "Message send unsuccessful"
 
 def test_get_message_positive(setup):
     """
-    Test the gmail GET API
     underlying GET API call: url = "GET https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/{id}"
-    :param setup: fixture returns the API binding object to gmail service
+
+    The test validates if there is an email in the Inbox with the expected message in the body. POSITIVE SCENARIO
+
+    param setup: fixture returns the API binding object to gmail service
     """
     service = setup
     found = False
     results = service.users().messages().list(userId='me').execute()
-    print(f"Results messages {results}")
     print(len(results['messages']))
+    print(f"Results messages {results}")
     for message in results['messages']:
         msg = service.users().messages().get(userId='me', id=message['id']).execute()
         msg_body = msg['snippet']
@@ -100,15 +106,16 @@ def test_get_message_positive(setup):
 
 def test_get_message_negative(setup):
     """
-    Test the gmail GET API
     underlying GET API call: url = "GET https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/{id}"
+
+    The test validates against a dummy random message in the body of the emails. NEGATIVE SCENARIO
     :param setup: fixture returns the API binding object to gmail service
     """
     service = setup
     found = False
     results = service.users().messages().list(userId='me').execute()
-    print(f"Results messages {results}")
     print(len(results['messages']))
+    print(f"Results messages {results}")
     for message in results['messages']:
         msg = service.users().messages().get(userId='me', id=message['id']).execute()
         msg_body = msg['snippet']
@@ -119,13 +126,18 @@ def test_get_message_negative(setup):
 
 def test_delete_message(setup):
     """
-    Test the gmail DELETE API
+    Test the gmail DELETE HTTP Request
     underlying DELETE API call: url = "DELETE https://gmail.googleapis.com/gmail/v1/users/{userId}/messages/{id}"
-    :param setup: fixture returns the API binding object to gmail service
+
+    The test deletes the email(s) and validates for an empty Inbox
+
+    param setup: fixture returns the API binding object to gmail service
     """
     service = setup
     results = service.users().messages().list(userId='me').execute()
+    print(f"Message(s) details pre deletion: {results}")
     message_list = results['messages']
+    # Initial assert is done to validate there is at least one message present.
     assert results['resultSizeEstimate'] != 0, "There are no messages in Inbox"
     print(len(results['messages']))
     id_list = []
@@ -134,5 +146,7 @@ def test_delete_message(setup):
     for count in range(0, len(id_list)):
         service.users().messages().delete(userId='me', id=id_list[count]).execute()
     results = service.users().messages().list(userId='me').execute()
+    print(f"Message(s) details post deletion: {results}")
+    # Post deletion, assert is done to validate there are no emails in the Inbox
     assert results['resultSizeEstimate'] == 0, "There are still some messages in the Inbox"
-    print(f"last test case second: {results}")
+
